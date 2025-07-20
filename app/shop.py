@@ -25,7 +25,7 @@ class Shop:
 
         for product, amount in customer.product_cart.items():
             product_cost = amount * self.products[product]
-            if product_cost.is_integer():
+            if product_cost == int(product_cost):
                 cost_str = str(int(product_cost))
             else:
                 cost_str = str(product_cost)

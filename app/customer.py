@@ -1,8 +1,11 @@
 from __future__ import annotations
 import math
 
+from typing import TYPE_CHECKING
 from app.car import Car
-from app.shop import Shop
+
+if TYPE_CHECKING:
+    from app.shop import Shop
 
 
 class Customer:

@@ -1,20 +1,19 @@
 from __future__ import annotations
 import math
-from typing import TYPE_CHECKING
-from app.car import Car
 
-if TYPE_CHECKING:
-    from app.shop import Shop
+from app.car import Car
+from app.shop import Shop
 
 
 class Customer:
-    def __init__(self,
-                 name: str,
-                 product_cart: dict,
-                 location: list,
-                 money: int,
-                 car: Car
-                 ) -> None:
+    def __init__(
+            self,
+            name: str,
+            product_cart: dict,
+            location: list,
+            money: int,
+            car: Car
+    ) -> None:
         self.name = name
         self.product_cart = product_cart
         self.location = location
@@ -46,10 +45,10 @@ class Customer:
         return products_to_buy.issubset(products_in_shop)
 
     def calculate_products_cost(self, shop: Shop) -> int | float:
-        total_price = 0
-        for product, count in self.product_cart.items():
-            total_price += (shop.products[product] * count)
-        return total_price
+        return sum(
+            shop.products[product] * count
+            for product, count in self.product_cart.items()
+        )
 
     def ride_to_shop(self, shop: Shop) -> None:
         print(f"{self.name} rides to {shop.name}\n")
